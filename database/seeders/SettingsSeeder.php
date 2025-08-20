@@ -35,21 +35,21 @@ class SettingsSeeder extends Seeder
                 'key' => 'facebook_url',
                 'value' => 'https://facebook.com/naraicoder',
                 'group' => 'social',
-                'type' => 'json',
+                'type' => 'string',
                 'description' => 'Social media links'
             ],
             [
                 'key' => 'twitter_url',
                 'value' => 'https://twitter.com/naraicoder',
                 'group' => 'social',
-                'type' => 'json',
+                'type' => 'string',
                 'description' => 'Twitter profile URL'
             ],
             [
                 'key' => 'instagram_url',
                 'value' => 'https://instagram.com/naraicoder',
                 'group' => 'social',
-                'type' => 'json',
+                'type' => 'string',
                 'description' => 'Instagram profile URL'
             ]
         ];
