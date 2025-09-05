@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
     /**
-     * Display a listing of events.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Get(path="/events", tags={"Events"}, summary="List all events", security={{"sanctum":{}}}, @OA\Response(response=200, description="Success"))
      */
     public function index()
     {

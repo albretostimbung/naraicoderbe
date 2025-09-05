@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PartnerController extends Controller
 {
-    /**
-     * Display a listing of partners.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    /** @OA\Get(path="/partners", tags={"Partners"}, summary="List all partners", @OA\Response(response=200, description="Success")) */
     public function index()
     {
         $partners = Partner::when(request('partnership_type'), function($query, $type) {

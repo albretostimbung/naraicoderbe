@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TestimonialController extends Controller
 {
-    /**
-     * Display a listing of testimonials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    /** @OA\Get(path="/testimonials", tags={"Testimonials"}, summary="List all testimonials", security={{"sanctum":{}}}, @OA\Response(response=200, description="Success")) */
     public function index()
     {
         $testimonials = Testimonial::with(['user'])
@@ -155,11 +151,7 @@ class TestimonialController extends Controller
         ]);
     }
 
-    /**
-     * Get featured testimonials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    /** @OA\Get(path="/testimonials/featured", tags={"Testimonials"}, summary="List featured testimonials", @OA\Response(response=200, description="Success")) */
     public function featured()
     {
         $testimonials = Testimonial::with('user')

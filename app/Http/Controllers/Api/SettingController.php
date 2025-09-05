@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of settings.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    /** @OA\Get(path="/settings", tags={"Settings"}, summary="Get all settings", @OA\Response(response=200, description="Success")) */
     public function index()
     {
         $settings = Setting::when(request('group'), function($query, $group) {
