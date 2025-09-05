@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+      args:
+        user: "${USER:-sail}"
+        uid: "${UID:-1000}"
+    container_name: naraicoderbe-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - naraicoderbe
+
+  nginx:
+    image: nginx:alpine
+    container_name: naraicoderbe-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - naraicoderbe
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: naraicoderbe-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./storage/app/db_data:/var/lib/mysql
+    networks:
+      - naraicoderbe
+
+networks:
+  naraicoderbe:
+    driver: bridge
