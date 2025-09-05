@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'is_active' => true, // Default to active
         ]);
 
-        $user->assignRole('user'); // Assign default role
+        $user->assignRole('member'); // Assign default role
 
         return ResponseFormatter::success($user, 'User registered successfully');
     }
