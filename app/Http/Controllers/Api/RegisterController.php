@@ -52,8 +52,9 @@ class RegisterController extends Controller
             'portfolio_url' => $request->portfolio_url,
             'location' => $request->location,
             'is_active' => true, // Default to active
-            'role' => 'member', // Default role
         ]);
+
+        $user->assignRole('user'); // Assign default role
 
         return ResponseFormatter::success($user, 'User registered successfully');
     }
