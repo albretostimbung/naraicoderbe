@@ -18,22 +18,6 @@ class UserController extends Controller
      */
     public function index()
     {
-// $table->string('name');
-// $table->string('email')->unique();
-// $table->timestamp('email_verified_at')->nullable();
-// $table->string('password');
-// $table->string('phone')->nullable();
-// $table->string('profile_photo')->nullable();
-// $table->text('bio')->nullable();
-// $table->text('skills')->nullable(); // JSON field for skills array
-// $table->string('job_title')->nullable();
-// $table->string('company')->nullable();
-// $table->string('linkedin')->nullable();
-// $table->string('github')->nullable();
-// $table->string('portfolio_url')->nullable();
-// $table->string('location')->nullable();
-// $table->boolean('is_active')->default(true);
-// $table->enum('role', ['admin', 'member'])->default('member');
         $users = User::with(['eventRegistrations', 'testimonials'])
             ->when(request('search'), function($query, $search) {
                 return $query->where(function($q) use ($search) {
@@ -142,20 +126,5 @@ class UserController extends Controller
         $user->delete();
 
         return ResponseFormatter::success(null, 'User deleted successfully');
-    }
-
-    /**
-     * Get registrations for a specific user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function registrations(User $user)
-    {
-        $registrations = $user->eventRegistrations()
-            ->with('user')
-            ->paginate(request('per_page', 10));
-
-        return ResponseFormatter::success($registrations, 'User registrations retrieved successfully');
     }
 }
