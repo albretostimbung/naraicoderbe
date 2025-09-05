@@ -11,7 +11,26 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * @OA\Post(
+     *      path="/register",
+     *      operationId="registerUser",
+     *      tags={"Authentication"},
+     *      summary="User Registration",
+     *      description="Registers a new user and returns the user data.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StoreUserRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="User registered successfully",
+     *          @OA\JsonContent(ref="#/components/schemas/UserApiResponse")
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error"
+     *      )
+     * )
      */
     public function __invoke(Request $request)
     {

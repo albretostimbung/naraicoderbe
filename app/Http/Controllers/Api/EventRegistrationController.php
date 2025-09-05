@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class EventRegistrationController extends Controller
 {
-    /**
-     * Display a listing of registrations.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    /** @OA\Get(path="/event-registrations", tags={"Event Registrations"}, summary="List all event registrations", security={{"sanctum":{}}}, @OA\Response(response=200, description="Success")) */
     public function index()
     {
         $registrations = EventRegistration::with(['event', 'user'])
